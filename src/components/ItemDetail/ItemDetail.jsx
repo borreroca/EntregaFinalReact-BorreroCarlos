@@ -1,7 +1,26 @@
-
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail =({id, name, src, category, description, price, stock}) => {
+
+    const [quantity, setQuantity] = useState(0)
+
+    const {addItem} = useCart()
+
+    const handleOnAdd = (quantity) => {
+        setQuantity(quantity)
+
+        const objProduct = {
+            id, name, price, quantity
+        }
+ 
+        addItem(objProduct)
+
+    }
+
+
     return(
         <article className="CardItem">
             <header className="Header">
@@ -24,7 +43,11 @@ const ItemDetail =({id, name, src, category, description, price, stock}) => {
                 </p>
             </section>
             <footer className="ItemFooter">
-            <ItemCount initial={1} stock={10} onAdd={(quantity) => console.log("Cantidad agregada ", quantity)}/>
+                {
+                    quantity == 0 
+                    ? (stock > 0 ? <ItemCount initial={1} stock={stock} onAdd={handleOnAdd}/> : <p>No hay stock del producto</p>)
+                    : <Link to ="/cart"> Finalizar compra</Link>
+                }
             </footer>
         </article>
     )

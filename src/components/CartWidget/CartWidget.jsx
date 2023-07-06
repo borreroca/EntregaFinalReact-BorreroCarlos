@@ -1,9 +1,15 @@
-// import React from 'react'
 import { BsFillCartFill } from "react-icons/bs";
+import { useCart } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 const CartWidget = () => {
+
+  const {totalQuantity} = useCart()
+
   return (
-    <div><BsFillCartFill/> 0 </div>
+    <Link to="/cart" className="CartWidget" style={{display: totalQuantity > 0 ? "block" : "none"}}>
+      <BsFillCartFill/> {totalQuantity}
+    </Link>
   )
 }
 
