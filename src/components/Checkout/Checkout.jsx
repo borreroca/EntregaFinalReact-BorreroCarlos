@@ -6,7 +6,7 @@ import { db } from "../../services/firebase/firebaseConfig";
 
 const Checkout = () => {
 
-    const {cart, total} = useCart()
+    const {cart, total, clearCart} = useCart()
     const navigate = useNavigate()
 
     const createOrder = async () => {
@@ -56,7 +56,7 @@ const Checkout = () => {
                 const {id} = await addDoc(ordersRef, objOrder)
 
                 // console.log("la compra fue realizada, id: " + id)
-
+                clearCart()
                 navigate("/")
 
             }
