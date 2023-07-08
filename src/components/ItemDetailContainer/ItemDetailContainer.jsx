@@ -21,17 +21,11 @@ const ItemDetailContainer = () => {
                 const productAdapted = {id: querySnapshot.id, ...fields}
                 setProduct(productAdapted)
             })
-        // getProductById(itemId)
-        //     .then(response=>{
-        //         setProduct(response)
-        //     })
-        //     .catch(error =>{
-        //         console.error(error)
-        //     })
     }, [itemId])
 
   return (
     <div className="ItemDetailContainer">
+        <h1>Detalle del producto</h1>
         <ItemDetail {...product}/>
     </div>
   )

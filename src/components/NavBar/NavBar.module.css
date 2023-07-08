@@ -1,0 +1,43 @@
+.navbar {
+  background-color: #333;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  }
+
+  .logo {
+    margin-right: 2rem;
+    text-decoration: none;
+    color: whitesmoke;
+  }
+
+  .nameLogo{
+    margin-bottom: 0;
+  }
+  
+  .navbarMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .navbarItem {
+    margin-right: 10px;
+  }
+  
+  .navbarLink {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .navbarLink:hover {
+    background-color: #555;
+    color: whitesmoke
+  }
+  
