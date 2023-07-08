@@ -16,6 +16,7 @@ const Checkout = () => {
 
     const createOrder = async (buyerInfo) => {
         setLoading(true)
+        
         const buyer = buyerInfo
 
         const objOrder = {
@@ -84,7 +85,7 @@ const Checkout = () => {
 
     return (
         <>
-            <h1>Checkout</h1>
+            <h1 style={{margin: "1rem", fontSize:"3rem"}}>Checkout</h1>
             <BuyerForm onForSubmit={createOrder}/>
         </>
     )

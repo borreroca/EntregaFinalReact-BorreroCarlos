@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from "react";
+import Swal from "sweetalert2";
 
 const CartContext = createContext ({
     cart: []
@@ -9,12 +10,22 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
   
     const addItem = (productToAdd) => {
+
         if(!isInCart(productToAdd.id)){
             setCart(prev => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Producto agregado!',
+                    text: `El producto ha sido agregado exitosamente al carrito.`,
+                })
                 return [...prev, productToAdd]
             })
         }else {
-            console.error("El producto ya fue agregado")
+        Swal.fire({
+            icon: 'error',
+            title: 'Ups! Parece que hubo un error',
+            text: `Este producto ya ha sido agregado al carrito`,
+        })
         }
     }
 

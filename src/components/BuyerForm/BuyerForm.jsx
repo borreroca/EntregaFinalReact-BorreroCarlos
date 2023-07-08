@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import styles from './styles.module.css';
+import styles from './BuyerForm.module.css';
+import Swal from 'sweetalert2';
 
 const BuyerForm = ({onForSubmit}) => {
 
@@ -13,9 +14,16 @@ const BuyerForm = ({onForSubmit}) => {
 
     e.preventDefault();
 
-    // Verificar que ambos emails sean iguales
+    if (!name || !lastName || !cell || !email || !emailConfirmacion) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ups! Parece que hubo un error',
+        text: 'Por favor, completa todos los campos.',
+      });
+      return;
+    }
+
     if (email === emailConfirmacion) {
-      // Realizar acciones con los datos ingresados
       const buyerInfo = {
         name, lastName, cell, email
       }
@@ -23,55 +31,65 @@ const BuyerForm = ({onForSubmit}) => {
       onForSubmit(buyerInfo)
 
     } else {
-      alert('Los emails no coinciden. Por favor, inténtelo de nuevo.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Ups! Parece que hubo un error',
+        text: `Los dos email escritos no son iguales`,
+    })
     }
   };
 
   return (
     <form className={styles.formulario} onSubmit={handleSubmit}>
-      <label>
+      <label className={styles.label}>
         Nombre:
         <input
           type="text"
+          className={styles.input}
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label>
+      <label className={styles.label}>
         Apellido:
         <input
           type="text"
+          className={styles.input}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
       </label>
-      <label>
+      <label className={styles.label}>
         Celular:
         <input
-          type="numer"
+          type="number"
+          className={styles.input}
           value={cell}
           onChange={(e) => setCell(e.target.value)}
         />
       </label>
-      <label>
+      <label className={styles.label}>
         Email:
         <input
           type="email"
+          className={styles.input}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
-      <label>
+      <label className={styles.label}>
         Confirmar Email:
         <input
           type="email"
+          className={styles.input}
           value={emailConfirmacion}
           onChange={(e) => setEmailConfirmacion(e.target.value)}
         />
       </label>
-      <button >Generar orden de compra</button>
+      <button className={styles.button}>Generar orden de compra</button>
     </form>
   );
+
 };
 
 export default BuyerForm;

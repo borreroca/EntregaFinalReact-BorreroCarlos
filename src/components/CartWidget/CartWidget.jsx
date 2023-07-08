@@ -7,7 +7,7 @@ const CartWidget = () => {
   const {totalQuantity} = useCart()
 
   return (
-    <Link to="/cart" className="CartWidget" style={{display: totalQuantity > 0 ? "block" : "none"}}>
+    <Link to="/cart" className="CartWidget" style={{display: totalQuantity > 0 ? "block" : "none", color:"white", textDecoration:"none"}}>
       <BsFillCartFill/> {totalQuantity}
     </Link>
   )

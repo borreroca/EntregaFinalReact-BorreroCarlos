@@ -1,6 +1,6 @@
 import { useCart } from "../../context/CartContext"
 import { Link } from "react-router-dom"
-
+import styles from './Cart.module.css';
 
 
 const Cart = () => {
@@ -18,22 +18,27 @@ const Cart = () => {
 
     return (
         <>
-            <h1>Cart</h1>
+            <h1 className={`${styles.mainTitle}`}>Carrito de compras</h1>
             {
                 cart.map(prod => {
                     return(
-                        <div key={prod.id}>
-                            <h2>{prod.name}</h2>
-                            <h3>${prod.price}</h3>
-                            <h3>cantidad: {prod.quantity}</h3>
-                            <h3>{prod.quantity * prod.price}</h3>
+                        <div key={prod.id} className={`${styles.itemDetail}`}>
+                            <h1 className={`${styles.title}`}>{prod.name}</h1>
+                            <div className={`${styles.infoContainer}`}>
+                                <img src={prod.img} alt={prod.name} className={`${styles.image}`} />
+                                <div className={`${styles.info}`}>
+                                    <p className={`${styles.price}`}>${prod.price} c/u</p>
+                                    <p className={`${styles.stock}`}>cantidad: {prod.quantity}</p>
+                                    <p className={`${styles.finalPrice}`}>Subtotal: ${prod.price * prod.quantity}</p>
+                                </div>    
+                            </div>                    
                         </div>
                     )
                 })
             }
-            <h2>Total de la compra es: ${total}</h2>
+            <h2 className={`${styles.total}`}>Total de la compra es: ${total}</h2>
 
-            <Link to="/checkout">Checkout</Link>
+            <Link to="/checkout" className={`${styles.link}`}>Checkout</Link>
         </>
         
     )
